@@ -17,6 +17,7 @@
 /build
 
 # misc
+/drizzle
 .DS_Store
 *.pem
 
@@ -27,7 +28,6 @@ yarn-error.log*
 
 # local env files
 .env*.local
-
 # vercel
 .vercel
 
