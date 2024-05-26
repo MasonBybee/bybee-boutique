@@ -4,7 +4,6 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 interface data {
-  orderId: number;
   inventoryId: number;
   price: string;
   quantity: number;
@@ -27,7 +26,7 @@ export async function PATCH(request: Request, context: any) {
 
   const response = await db
     .update(orderItems)
-    .set(data)
+    .set({ orderId: params.id, ...data })
     .where(eq(orderItems.id, params.id));
 
   return NextResponse.json(response);
