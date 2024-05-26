@@ -1,0 +1,49 @@
+/api/
+
+    /auth/login POST
+
+    /auth/signup POST
+
+    /carts GET POST
+    
+    /carts/[id] GET PATCH DELETE
+
+    /carts/[id]/cartitems GET POST
+
+    /carts/[id]/cartitems/[itemsid] GET PATCH DELETE
+
+    /categories GET POST
+
+    /categories/[name] GET PATCH DELETE
+
+    /images GET POST
+    
+    /images/[imageId] GET PATCH DELETE
+
+    /inventory/ GET POST
+
+    /inventory/[id]/ GET PATCH DELETE
+
+    /orders GET POST
+    
+    /orders/[id] GET PATCH DELETE
+
+    /orders/[id]/orderitems GET POST
+
+    /orders/[id]/orderitems/[itemsid] GET PATCH DELETE
+
+    /users GET
+
+    /users/[userId] GET PATCH DELETE
+
+    /users/[userId]/reviews GET POST
+
+    /users/[userId]/reviews/[id] GET PATCH DELETE
+
+    /wishlists GET POST
+    
+    /wishlists/[id] GET PATCH DELETE
+
+    /wishlists/[id]/wishlistitems GET POST
+
+    /wishlists/[id]/wishlistitems/[itemsid] GET PATCH DELETE
