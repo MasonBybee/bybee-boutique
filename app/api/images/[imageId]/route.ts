@@ -4,8 +4,8 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 interface data {
-  image: string;
-  description: string;
+  image?: string;
+  description?: string;
 }
 
 export async function GET(request: Request, context: any) {
@@ -24,8 +24,9 @@ export async function PATCH(request: Request, context: any) {
   const response = await db
     .update(images)
     .set(data)
-    .where(eq(images.id, params.imageId));
-  return NextResponse.json(response);
+    .where(eq(images.id, params.imageId))
+    .returning();
+  return NextResponse.json(response[0]);
 }
 
 export async function DELETE(request: Request, context: any) {}

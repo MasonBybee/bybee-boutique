@@ -4,8 +4,8 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 interface data {
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
 }
 
 export async function GET(request: Request, context: any) {
