@@ -1,0 +1,41 @@
+.categoryContainer {
+  background-color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  border-radius: 20px;
+  padding: 30px;
+  width: 70%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+}
+
+.categoryContainer h2 {
+  color: #ffb703;
+  font-size: 1.6rem;
+  margin-bottom: 40px;
+}
+
+.category {
+  margin: 10px 20px;
+  display: inline-block;
+  background-color: #fff8e7;
+  color: #8b4513;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+.category h3 {
+  text-decoration: underline;
+}
+
+.categoryImg {
+  height: 200px;
+  width: 200px;
+}
