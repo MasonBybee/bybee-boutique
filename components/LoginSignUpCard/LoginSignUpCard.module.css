@@ -1,0 +1,19 @@
+.container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+  top: 110%;
+  text-align: center;
+  padding: 30px 20px 20px 20px;
+  border-radius: 5px;
+}
+
+.signInBtn {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #8b4513;
+}
+
+.signIn {
+  color: #fcc000;
+}

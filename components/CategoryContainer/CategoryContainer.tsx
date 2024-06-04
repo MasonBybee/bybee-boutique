@@ -1,10 +1,10 @@
 "use client";
 
-import CustomError from "@/services/CustomError";
+import CustomError from "@/lib/CustomError";
 import React, { useEffect, useState } from "react";
-import Loading from "./Loading";
 import styles from "./CategoryContainer.module.css";
 import Link from "next/link";
+import Loading from "../Loading";
 
 type DataState = null | any;
 

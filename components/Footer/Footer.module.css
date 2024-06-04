@@ -1,0 +1,12 @@
+.footerContainer {
+  background-color: black;
+  border-top: 3px solid white;
+  width: 100%;
+  color: #ffb703;
+  display: flex;
+  justify-content: space-evenly;
+  min-height: 200px;
+}
+.footerContent {
+  height: 100%;
+}
