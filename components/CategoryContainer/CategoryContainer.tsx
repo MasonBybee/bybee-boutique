@@ -3,8 +3,8 @@
 import CustomError from "@/lib/CustomError";
 import React, { useEffect, useState } from "react";
 import styles from "./CategoryContainer.module.css";
-import Link from "next/link";
 import Loading from "../Loading";
+import CategoryCard from "../CategoryCard";
 
 type DataState = null | any;
 
@@ -50,20 +50,16 @@ const CategoryContainer = () => {
   }
   return (
     <div className={styles.categoryContainer}>
-      <h2>Categories</h2>
-      <div>
+      <h2 className={styles.categoryContainerH2}>Categories</h2>
+      <div className={styles.categories}>
         {data.map((category: Category) => {
           return (
-            <Link key={category.id} href={`/category/${category.name}`}>
-              <div className={styles.category}>
-                <h3 className={styles.categoryName}>{category.name}</h3>
-                <img
-                  className={styles.categoryImg}
-                  src={category.image.image}
-                  alt={category.image.description}
-                />
-              </div>
-            </Link>
+            <CategoryCard
+              key={category.id}
+              name={category.name}
+              img={category.image.image}
+              imgDesc={category.image.description}
+            />
           );
         })}
       </div>
