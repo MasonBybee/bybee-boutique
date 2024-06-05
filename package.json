@@ -20,8 +20,7 @@
     "iron-session": "^8.0.1",
     "next": "14.2.3",
     "pg": "8.11.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^19.0.0-rc-1df34bdf62-20240605"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
