@@ -1,11 +1,8 @@
-"use client";
+"use server";
 
-import React, { useEffect, useState, useTransition } from "react";
-import Link from "next/link";
+import React from "react";
 import styles from "./Navbar.module.css";
-import { getSession } from "@/actions/session";
 import ProfileBtn from "../ProfileBtn/ProfileBtn";
-import { SessionData } from "@/lib/session";
 import NavLink from "../NavLink";
 import {
   faHeart,
@@ -13,18 +10,12 @@ import {
   faShoppingCart,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { ExtendedSession } from "@/lib/session";
 
-const Navbar = () => {
-  const [user, setUser] = useState<SessionData | null>(null);
-  const [isPending, startTransition] = useTransition();
-  useEffect(() => {
-    startTransition(() => {
-      getSession().then((user) => {
-        setUser(user);
-      });
-    });
-  }, []);
-
+interface NavbarProps {
+  session: ExtendedSession;
+}
+const Navbar: React.FC<NavbarProps> = ({ session }) => {
   return (
     <nav className={styles.nav}>
       <ul className={styles.navul}>
@@ -49,7 +40,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className={styles.navliright}>
-          {user?.isLoggedIn ? (
+          {session?.isLoggedIn ? (
             <NavLink icon={faUser} href={"/profile"}>
               Profile
             </NavLink>
