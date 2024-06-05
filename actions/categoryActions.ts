@@ -1,0 +1,21 @@
+"use server";
+import CustomError from "@/lib/CustomError";
+import db from "@/lib/db/db";
+import { cache } from "react";
+
+export const getCategories = cache(async () => {
+  try {
+    const result = await db.query.categories.findMany({
+      with: {
+        image: true,
+      },
+    });
+    if (result) {
+      return result;
+    } else {
+      throw new CustomError(500, "Internal Server Error");
+    }
+  } catch (e) {
+    return e;
+  }
+});
