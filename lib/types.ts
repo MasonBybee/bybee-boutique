@@ -12,5 +12,5 @@ export interface CategoryWithProduct {
   id: number;
   name: string;
   description: string;
-  product: Inventory;
+  product: Inventory[];
 }
