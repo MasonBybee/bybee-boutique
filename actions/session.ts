@@ -15,11 +15,12 @@ import { redirect } from "next/navigation";
 
 export const getSession = async (
   plain = false
-): Promise<ExtendedSession | { [key: string]: any } | string> => {
+): Promise<ExtendedSession | { [key: string]: any }> => {
   const session = (await getIronSession<SessionData>(
     cookies(),
     sessionOptions
   )) as ExtendedSession;
+
   if (!session.isLoggedIn) {
     session.isLoggedIn = defaultSession.isLoggedIn;
   }
@@ -27,7 +28,14 @@ export const getSession = async (
   if (!plain) {
     return session;
   } else {
-    return JSON.stringify(session);
+    return {
+      userId: session.userId,
+      firstName: session.firstName,
+      lastName: session.lastName,
+      username: session.username,
+      isAdmin: session.isAdmin,
+      isLoggedIn: session.isLoggedIn,
+    };
   }
 };
 

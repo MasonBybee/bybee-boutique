@@ -1,6 +1,7 @@
 "use server";
 import CustomError from "@/lib/CustomError";
 import db from "@/lib/db/db";
+import { Inventory } from "@/lib/schema/Inventory";
 import { cache } from "react";
 
 export const getCategories = cache(async () => {
@@ -28,6 +29,7 @@ export const getCategory = cache(async (categoryName: string) => {
         products: true,
       },
     });
+
     if (category) {
       return category;
     } else {
