@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 
 export default async function Home() {
   return (
-    <main className={styles.main}>
+    <>
       <div className={styles.welcomediv}>
         <h1 className={styles.welcomeh1}>Welcome to the Bybee Boutique</h1>
         <h3 className={styles.welcomeh3}>Buzz around and explore our hive!</h3>
@@ -21,6 +21,6 @@ export default async function Home() {
         </p>
       </div>
       <CategoryContainer />
-    </main>
+    </>
   );
 }
