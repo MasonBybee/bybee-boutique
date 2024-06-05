@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-
 import styles from "./ProfileBtn.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import LoginSignUpCard from "../LoginSignUpCard";
 
-const ProfileBtn = () => {
-  const [visable, setVisable] = useState(false);
+const ProfileBtn: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+
   const handleClick = () => {
-    setVisable(visable ? false : true);
+    console.log("clicked");
+    setVisible(!visible);
   };
+
   return (
     <div className={styles.container}>
       <button onClick={handleClick} className={styles.button}>
@@ -19,7 +21,7 @@ const ProfileBtn = () => {
           </div>
         </div>
       </button>
-      {visable ? <LoginSignUpCard /> : ""}
+      {visible && <LoginSignUpCard toggle={handleClick} />}
     </div>
   );
 };
