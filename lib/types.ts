@@ -14,3 +14,17 @@ export interface CategoryWithProduct {
   description: string;
   product: Inventory[];
 }
+
+export interface SignUpFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  password: string;
+  checkPassword: string;
+}
+
+export interface LoginFormValues {
+  username: string;
+  password: string;
+}
