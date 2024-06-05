@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import styles from "./ProfileBtn.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
