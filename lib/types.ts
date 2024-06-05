@@ -21,3 +21,11 @@ export interface CategoryWithImage {
   description: string;
   image: Image;
 }
+
+export interface Cart {
+  id: number;
+  userId: number;
+  items: object[];
+  createdAt: string;
+  updatedAt: string;
+}
