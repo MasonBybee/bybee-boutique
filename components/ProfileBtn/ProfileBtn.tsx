@@ -9,7 +9,6 @@ const ProfileBtn: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   const handleClick = () => {
-    console.log("clicked");
     setVisible(!visible);
   };
 
