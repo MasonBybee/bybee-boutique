@@ -1,19 +1,5 @@
-export interface User {
-  id?: number;
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-  email: string;
-  admin: boolean;
-}
-export interface Image {
-  id: number;
-  description: string;
-  image: string;
-  categoryId: null | number;
-  inventoryId: null | number;
-}
+import { Image } from "./schema/Image";
+import { Inventory } from "./schema/Inventory";
 
 export interface CategoryWithImage {
   id: number;
@@ -22,10 +8,9 @@ export interface CategoryWithImage {
   image: Image;
 }
 
-export interface Cart {
+export interface CategoryWithProduct {
   id: number;
-  userId: number;
-  items: object[];
-  createdAt: string;
-  updatedAt: string;
+  name: string;
+  description: string;
+  product: Inventory;
 }
