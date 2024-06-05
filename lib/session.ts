@@ -1,17 +1,21 @@
-import { SessionOptions } from "iron-session";
+import { IronSession, SessionOptions } from "iron-session";
 
 export interface SessionData {
+  isLoggedIn: boolean;
   userId?: number;
-  username?: string;
   firstName?: string;
   lastName?: string;
-  isLoggedIn: boolean;
-  isAdmin: boolean;
+  username?: string;
+  isAdmin?: boolean;
 }
 
 export const defaultSession: SessionData = {
   isLoggedIn: false,
-  isAdmin: false,
+  userId: undefined,
+  firstName: undefined,
+  lastName: undefined,
+  username: undefined,
+  isAdmin: undefined,
 };
 
 export const sessionOptions: SessionOptions = {
@@ -22,3 +26,5 @@ export const sessionOptions: SessionOptions = {
     secure: (process.env.NODE_ENV as string) === "production",
   },
 };
+
+export type ExtendedSession = IronSession<SessionData>;
