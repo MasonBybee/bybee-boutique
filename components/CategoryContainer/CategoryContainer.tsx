@@ -1,58 +1,31 @@
 "use client";
-
-import CustomError from "@/lib/CustomError";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import styles from "./CategoryContainer.module.css";
 import Loading from "../Loading";
 import CategoryCard from "../CategoryCard";
+import { getCategories } from "@/actions/categoryActions";
+import { CategoryWithImage } from "@/lib/types";
 
-type DataState = null | any;
-
-interface Image {
-  id: number;
-  description: string;
-  image: string;
-  categoryId: number;
-  inventoryId: null | number;
-}
-
-interface Category {
-  id: number;
-  name: string;
-  description: string;
-  image: Image;
-}
-
-const CategoryContainer = () => {
-  const [data, setData] = useState<DataState>(null);
+const CategoryContainer: React.FC = () => {
+  const [data, setData] = useState<CategoryWithImage[]>([]);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/categories");
-        if (!response.ok) {
-          throw new CustomError(400, "Failed to fetch Categories");
-        }
-        setData(await response.json());
-      } catch (e) {
-        if (e instanceof CustomError) {
-          console.error(e.status, e.message);
-          setData(null);
-        }
-      }
-    };
-
-    fetchData();
+    startTransition(() => {
+      getCategories().then((categories) => {
+        setData(categories as CategoryWithImage[]);
+      });
+    });
   }, []);
 
-  if (data === null) {
+  if (isPending) {
     return <Loading />;
   }
   return (
     <div className={styles.categoryContainer}>
       <h2 className={styles.categoryContainerH2}>Categories</h2>
       <div className={styles.categories}>
-        {data.map((category: Category) => {
+        {data.map((category: CategoryWithImage) => {
           return (
             <CategoryCard
               key={category.id}
