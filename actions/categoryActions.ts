@@ -1,8 +1,8 @@
 "use server";
 import CustomError from "@/lib/CustomError";
 import db from "@/lib/db/db";
-import { Inventory } from "@/lib/schema/Inventory";
 import { cache } from "react";
+import fixResults from "./fixResults";
 
 export const getCategories = cache(async () => {
   try {
@@ -17,7 +17,7 @@ export const getCategories = cache(async () => {
       throw new CustomError(500, "Internal Server Error");
     }
   } catch (e) {
-    return e;
+    throw e;
   }
 });
 
@@ -29,13 +29,14 @@ export const getCategory = cache(async (categoryName: string) => {
         products: true,
       },
     });
-
+    console.log(category);
+    return fixResults(category);
     if (category) {
-      return category;
+      return fixResults(category);
     } else {
-      throw new CustomError(500, "Internal Server Error");
+      throw new Error("Internal Server Error");
     }
   } catch (e) {
-    return e;
+    throw e;
   }
 });
