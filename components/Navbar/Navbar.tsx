@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
         </li>
         <li className={styles.navliright}>
           {session?.isLoggedIn ? (
-            <NavLink icon={faUser} href={"/profile"}>
+            <NavLink icon={faUser} href={"/user/profile"}>
               Profile
             </NavLink>
           ) : (
