@@ -16,6 +16,10 @@ export const inventory = pgTable("inventory", {
 
 export const inventoryRelations = relations(inventory, ({ one, many }) => ({
   images: many(images),
+  category: one(categories, {
+    fields: [inventory.categoryId],
+    references: [categories.id],
+  }),
 }));
 
 export type Inventory = typeof inventory.$inferSelect;
