@@ -1,31 +1,21 @@
-"use client";
-import React, { useEffect, useState, useTransition } from "react";
+"use server";
 import { getCategory } from "@/actions/categoryActions";
-import Loading from "@/components/Loading";
-import { CategoryWithProduct } from "@/lib/types";
+import { Category } from "@/lib/schema/Category";
+import React from "react";
 
-const CategoryPage = ({ params }: { params: { categoryName: string } }) => {
-  const [isPending, startTransition] = useTransition();
-  const [category, setCategory] = useState<CategoryWithProduct>();
-  useEffect(() => {
-    startTransition(() => {
-      getCategory(params.categoryName).then((category) => {
-        setCategory(category as CategoryWithProduct);
-      });
-    });
-  }, []);
-  if (isPending) {
-    return <Loading />;
-  }
-
+const CategoryPage = async ({
+  params,
+}: {
+  params: { categoryName: string };
+}) => {
+  const category = (await getCategory(params.categoryName)) as Category;
+  console.log(category);
   return (
     <>
       <div>
-        <h1>{category?.name}</h1>
+        <h1 className="hi">{category?.name}</h1>
         <ul>
-          {category?.product.map((p) => {
-            return <li>{p.name}</li>;
-          })}
+          <p>{category.name}</p>
         </ul>
       </div>
     </>
