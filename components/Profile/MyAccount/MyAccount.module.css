@@ -1,0 +1,28 @@
+.SectionHeader {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+}
+
+.sectionHeader > .sectionElement {
+  padding: 10px;
+}
+
+.editButton {
+  background: none;
+  border: none;
+  font-weight: 800;
+}
+
+.fieldName {
+  color: grey;
+  font-weight: 300;
+  font-size: 1em;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.SectionTitle {
+  font-size: 1.2em;
+}
