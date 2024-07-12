@@ -31,5 +31,5 @@ export const wishlistItemRelations = relations(wishlistItems, ({ one }) => ({
   }),
 }));
 
-export type Category = typeof wishlistItems.$inferSelect;
-export type NewCategory = typeof wishlistItems.$inferInsert;
+export type WishlistItems = typeof wishlistItems.$inferSelect;
+export type NewWishlistItem = typeof wishlistItems.$inferInsert;
