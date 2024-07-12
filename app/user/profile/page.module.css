@@ -1,0 +1,33 @@
+.AccountContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.navigationList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: left;
+}
+
+.ButtonLink {
+  display: inline-block;
+  text-align: left;
+  width: fit-content;
+  height: 30px;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  text-wrap: nowrap;
+}
+
+.active {
+  border-bottom: 1px solid black;
+}
+
+.AccountPage {
+  /* border: 1px solid black; */
+  width: 100%;
+}
