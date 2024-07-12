@@ -1,8 +1,10 @@
 "use server";
 import CategoryContainer from "@/components/CategoryContainer";
 import styles from "./page.module.css";
+import { getCategories } from "@/actions/categoryActions";
 
 export default async function Home() {
+  const categories = await getCategories();
   return (
     <>
       <div className={styles.welcomediv}>
@@ -20,7 +22,7 @@ export default async function Home() {
           , none of the products listed here are real.
         </p>
       </div>
-      <CategoryContainer />
+      <CategoryContainer categories={categories} />
     </>
   );
 }
