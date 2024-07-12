@@ -18,7 +18,7 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const session = (await getSession(true)) as ExtendedSession;
+  const session = await getSession(true);
   return (
     <html lang="en">
       <body className={inter.className}>
