@@ -1,12 +1,16 @@
-"use server";
-
 import React from "react";
-import styles from "./page.module.css";
 import LoginForm from "@/components/LoginForm";
 
 const LoginPage = () => {
   return (
-    <div className={styles.container}>
+    <div
+      style={{
+        position: "relative",
+        display: "grid",
+        placeItems: "center",
+        height: "65vh",
+      }}
+    >
       <LoginForm />
     </div>
   );
