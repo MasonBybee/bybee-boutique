@@ -1,5 +1,4 @@
-"use server";
-
+"use client";
 import React from "react";
 import styles from "./Navbar.module.css";
 import ProfileBtn from "../ProfileBtn/ProfileBtn";
@@ -12,10 +11,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ExtendedSession } from "@/lib/session";
 
-interface NavbarProps {
-  session: ExtendedSession;
-}
-const Navbar: React.FC<NavbarProps> = ({ session }) => {
+const Navbar = ({
+  session,
+}: {
+  session:
+    | ExtendedSession
+    | {
+        [key: string]: any;
+      };
+}) => {
   return (
     <nav className={styles.nav}>
       <ul className={styles.navul}>
@@ -35,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
           </NavLink>
         </li>
         <li className={styles.navliright}>
-          <NavLink icon={faShoppingCart} href={"/cart"}>
+          <NavLink icon={faShoppingCart} href={"/user/cart"}>
             Cart
           </NavLink>
         </li>
@@ -49,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
           )}
         </li>
         <li className={styles.navliright}>
-          <NavLink icon={faHeart} href={"/wishlist"}>
+          <NavLink icon={faHeart} href={"/user/profile?section=wishlist"}>
             Wishlist
           </NavLink>
         </li>
