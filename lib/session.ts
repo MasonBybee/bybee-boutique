@@ -6,6 +6,7 @@ export interface SessionData {
   firstName?: string;
   lastName?: string;
   username?: string;
+  email?: string;
   isAdmin?: boolean;
   cartId?: number;
   wishlistId?: number;
@@ -20,6 +21,7 @@ export const defaultSession: SessionData = {
   isAdmin: undefined,
   cartId: undefined,
   wishlistId: undefined,
+  email: undefined,
 };
 
 export const sessionOptions: SessionOptions = {
