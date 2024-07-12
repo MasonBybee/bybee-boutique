@@ -32,5 +32,5 @@ export const cartItemRelations = relations(cartItems, ({ one }) => ({
   }),
 }));
 
-export type Category = typeof cartItems.$inferSelect;
-export type NewCategory = typeof cartItems.$inferInsert;
+export type CartItem = typeof cartItems.$inferSelect;
+export type NewCartItem = typeof cartItems.$inferInsert;
