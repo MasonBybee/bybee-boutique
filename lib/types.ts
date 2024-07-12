@@ -86,3 +86,9 @@ export interface ConvertToInventoryWithImagesInput {
   imageInventoryId: number | null;
   imageCategoryId: number | null;
 }
+
+export interface ConvertedProductResponse {
+  success?: boolean;
+  error?: string;
+  data: InventoryWithImages[];
+}
