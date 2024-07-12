@@ -1,0 +1,29 @@
+.card {
+  margin: 20px;
+  position: relative;
+  width: 200px;
+  height: 250px;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.CardImg {
+  width: 200px;
+}
+
+.container {
+  list-style: none;
+}
+
+.price,
+.name {
+  display: inline-block;
+  padding-left: 10%;
+}
+
+.card:hover .link {
+  text-decoration: underline;
+}
