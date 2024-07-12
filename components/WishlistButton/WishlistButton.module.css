@@ -1,0 +1,9 @@
+.wishlistBtn {
+  position: absolute;
+  font-size: 1.5em;
+  top: 5%;
+  right: 10%;
+  width: 30px;
+  background: none;
+  border: none;
+}
