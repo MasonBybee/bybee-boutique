@@ -1,15 +1,23 @@
 "use client";
 import { logout } from "@/actions/session";
-import { redirect } from "next/navigation";
+import styles from "./LogoutBtn.module.css";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const LogoutBtn = () => {
-  const handleClick = () => {
-    logout();
-    redirect("/");
+  const router = useRouter();
+  const handleClick = async () => {
+    logout().then(() => {
+      router.push("/");
+      router.refresh();
+    });
   };
-  return <button onClick={handleClick}>Logout</button>;
+  return (
+    <button className={styles.btn} onClick={handleClick}>
+      Logout
+    </button>
+  );
 };
 
 export default LogoutBtn;
