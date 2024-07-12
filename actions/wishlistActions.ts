@@ -6,6 +6,7 @@ import { inventory } from "@/lib/schema/Inventory";
 import { WishlistItems, wishlistItems } from "@/lib/schema/WishlistItems";
 import { InventoryWithImages } from "@/lib/types";
 import { and, eq, inArray } from "drizzle-orm";
+import { convertToInventoryWithImages } from "./helperActions";
 
 export const getWishlist = async (wishlistId: number) => {
   try {
@@ -20,46 +21,6 @@ export const getWishlist = async (wishlistId: number) => {
   } catch (e) {
     return { success: false, error: "Error retrieving wishlist" };
   }
-};
-
-const convertToInventoryWithImages = (
-  wishlistResponse: {
-    inventory: {
-      id: number;
-      name: string;
-      description: string;
-      stock: number;
-      unitPrice: string;
-      categoryId: number;
-    };
-    images: Image | null;
-  }[]
-): InventoryWithImages[] => {
-  const inventoryMap = new Map<number, InventoryWithImages>();
-
-  wishlistResponse.forEach((row) => {
-    const inventoryId = row.inventory.id;
-
-    if (!inventoryMap.has(inventoryId)) {
-      inventoryMap.set(inventoryId, {
-        id: row.inventory.id,
-        name: row.inventory.name,
-        description: row.inventory.description,
-        stock: row.inventory.stock,
-        unitPrice: row.inventory.unitPrice,
-        categoryId: row.inventory.categoryId,
-        images: [],
-      });
-    }
-
-    const inventory = inventoryMap.get(inventoryId);
-    if (inventory && row.images) {
-      inventory.images.push(row.images);
-    }
-  });
-  const response: InventoryWithImages[] = Array.from(inventoryMap.values());
-  console.log(response);
-  return response;
 };
 
 export const getWishlistProducts = async (wishlistItemIds: WishlistItems[]) => {
