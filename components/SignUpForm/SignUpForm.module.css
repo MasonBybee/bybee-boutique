@@ -3,6 +3,17 @@
   color: #ffb703;
 }
 
+.error {
+  position: absolute;
+  top: 2em;
+  left: 0px;
+  font-size: x-small;
+  margin: 10px 0;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
 .container {
   margin-inline: max((calc(100vw-70rem) / 2), 1.5rem);
   display: grid;
@@ -12,7 +23,7 @@
 
 .form {
   display: grid;
-  gap: 1.3em;
+  gap: 2.4em;
   max-width: 100%;
   text-align: left;
   padding-block: 0.5em;

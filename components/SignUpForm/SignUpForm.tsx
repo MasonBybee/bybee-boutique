@@ -1,130 +1,158 @@
 "use client";
 import { signup } from "@/actions/session";
 import styles from "./SignUpForm.module.css";
-import { SignUpFormValues } from "@/lib/types";
 import Link from "next/link";
-import { useForm, useFormState } from "react-hook-form";
+import React, { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { FormErrors, FormResponse } from "@/lib/types";
+import Loading from "../Loading";
 
-interface SignUpFormProps {
-  signup: (data: SignUpFormValues) => void;
-}
-
-const SignUpForm = ({ handleChange }) => {
-  const { control, register, handleSubmit } = useForm<SignUpFormValues>();
-  const { errors } = useFormState({ control });
-
-  const onSubmit = async (data: SignUpFormValues) => {
-    handleChange(data);
+const SignUpForm = () => {
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    checkPassword: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const onSubmit = async () => {
+    startTransition(() => {
+      signup(formData).then((response: FormResponse) => {
+        if (!response.errors) {
+          router.push("/");
+        } else {
+          setErrors(response.errors);
+        }
+      });
+    });
+  };
+  if (isPending) {
+    return <Loading />;
+  }
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Signup</h1>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} action={onSubmit}>
         <div className={styles.inputWrapper}>
           <input
+            name="firstName"
             type="text"
             id="firstName"
             className={styles.formInput}
             placeholder="First Name"
             autoComplete="given-name"
-            {...register("firstName", { required: "First name is required" })}
+            value={formData.firstName}
+            onChange={handleChange}
           />
           <label htmlFor="firstName" className={styles.formLabel}>
             First Name
           </label>
           {errors.firstName && (
-            <p className={styles.error}>{errors.firstName.message}</p>
+            <p className={styles.error}>{errors.firstName}</p>
           )}
         </div>
         <div className={styles.inputWrapper}>
           <input
+            name="lastName"
             type="text"
             id="lastName"
             className={styles.formInput}
             placeholder="Last Name"
             autoComplete="family-name"
-            {...register("lastName", { required: "Last Name is required" })}
+            onChange={handleChange}
+            value={formData.lastName}
           />
           <label htmlFor="lastName" className={styles.formLabel}>
             Last Name
           </label>
-          {errors.lastName && (
-            <p className={styles.error}>{errors.lastName.message}</p>
-          )}
+          {errors.lastName && <p className={styles.error}>{errors.lastName}</p>}
         </div>
         <div className={`${styles.inputWrapper} ${styles["md:span-2"]}`}>
           <input
+            name="email"
             type="email"
             id="email"
             className={styles.formInput}
             placeholder="Email Address"
             autoComplete="email"
-            {...register("email", { required: "Email Address is required" })}
+            onChange={handleChange}
+            value={formData.email}
           />
           <label htmlFor="email" className={styles.formLabel}>
             Email Address
           </label>
-          {errors.email && (
-            <p className={styles.error}>{errors.email.message}</p>
-          )}
+          {errors.email && <p className={styles.error}>{errors.email}</p>}
         </div>
         <div className={`${styles.inputWrapper} ${styles["md:span-2"]}`}>
           <input
+            name="username"
             type="text"
             id="username"
             className={styles.formInput}
             placeholder="Username"
             autoComplete="username"
-            {...register("username", { required: "Username is required" })}
+            onChange={handleChange}
+            value={formData.username}
           />
           <label htmlFor="username" className={styles.formLabel}>
             Username
           </label>
-          {errors.username && (
-            <p className={styles.error}>{errors.username.message}</p>
-          )}
+          {errors.username && <p className={styles.error}>{errors.username}</p>}
         </div>
         <div className={`${styles.inputWrapper} ${styles["md:span-2"]}`}>
           <input
+            name="password"
             type="password"
             id="password"
             className={styles.formInput}
             placeholder="Password"
             autoComplete="current-password"
-            {...register("password", { required: "Password is required" })}
+            onChange={handleChange}
+            value={formData.password}
           />
           <label htmlFor="password" className={styles.formLabel}>
             Password
           </label>
-          {errors.password && (
-            <p className={styles.error}>{errors.password.message}</p>
-          )}
+          {errors.password && <p className={styles.error}>{errors.password}</p>}
         </div>
         <div className={`${styles.inputWrapper} ${styles["md:span-2"]}`}>
           <input
+            name="checkPassword"
             type="password"
             id="checkPassword"
             className={styles.formInput}
             autoComplete="new-password"
-            placeholder="Check Password"
-            {...register("checkPassword", {
-              required: "Check Password is required",
-            })}
+            placeholder="Confirm Password"
+            value={formData.checkPassword}
+            onChange={handleChange}
           />
           <label htmlFor="checkPassword" className={styles.formLabel}>
             Check Password
           </label>
           {errors.checkPassword && (
-            <p className={styles.error}>{errors.checkPassword.message}</p>
+            <p className={styles.error}>{errors.checkPassword}</p>
           )}
         </div>
-        <button
-          type="submit"
-          className={`${styles.btn} ${styles["md:span-2"]}`}
-        >
-          Sign Up
-        </button>
+        <div style={{ position: "relative" }}>
+          {" "}
+          <button
+            type="submit"
+            className={`${styles.btn} ${styles["md:span-2"]}`}
+          >
+            Sign Up
+          </button>
+          {errors.submit && <p className={styles.error}>{errors.submit}</p>}
+        </div>
       </form>
       <p>
         Returning worker bee? Login{" "}
