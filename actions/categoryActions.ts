@@ -2,7 +2,6 @@
 import CustomError from "@/lib/CustomError";
 import db from "@/lib/db/db";
 import { cache } from "react";
-import fixResults from "./fixResults";
 
 export const getCategories = cache(async () => {
   try {
@@ -17,6 +16,7 @@ export const getCategories = cache(async () => {
       throw new CustomError(500, "Internal Server Error");
     }
   } catch (e) {
+    console.log(e);
     throw e;
   }
 });
@@ -26,13 +26,16 @@ export const getCategory = cache(async (categoryName: string) => {
     const category = await db.query.categories.findFirst({
       where: (categories, { eq }) => eq(categories.name, categoryName),
       with: {
-        products: true,
+        products: {
+          with: {
+            images: true,
+          },
+        },
       },
     });
-    console.log(category);
-    return fixResults(category);
+
     if (category) {
-      return fixResults(category);
+      return category;
     } else {
       throw new Error("Internal Server Error");
     }
