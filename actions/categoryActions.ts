@@ -16,7 +16,6 @@ export const getCategories = cache(async () => {
       throw new CustomError(500, "Internal Server Error");
     }
   } catch (e) {
-    console.log(e);
     throw e;
   }
 });
