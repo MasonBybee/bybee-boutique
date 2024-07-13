@@ -2,56 +2,17 @@
 
 import CustomError from "@/lib/CustomError";
 import db from "@/lib/db/db";
-import { CartItem, cartItems } from "@/lib/schema/CartItems";
-import { images } from "@/lib/schema/Image";
-import { inventory } from "@/lib/schema/Inventory";
-import { InventoryWithImages } from "@/lib/types";
-import { and, eq, inArray } from "drizzle-orm";
-import { convertToInventoryWithImages } from "./helperActions";
+import { cartItems } from "@/lib/schema/CartItems";
+import { and, eq } from "drizzle-orm";
 
 export const getCart = async (cartId: number) => {
   try {
     const response = await db.query.cartItems.findMany({
       where: (cartItems, { eq }) => eq(cartItems.cartId, cartId),
+      with: { product: { with: { images: true } } },
     });
-    if (response) {
+    if (response.length) {
       return { success: true, data: response };
-    }
-    return { success: false, error: "Error retrieving cart" };
-  } catch (e) {
-    return { success: false, error: "Error retrieving cart" };
-  }
-};
-
-export const getCartProducts = async (cartItemIds: CartItem[]) => {
-  try {
-    const inventoryIds = cartItemIds.map((item) => item.inventoryId);
-    const response = await db
-      .select({
-        inventory: {
-          id: inventory.id,
-          name: inventory.name,
-          description: inventory.description,
-          stock: inventory.stock,
-          unitPrice: inventory.unitPrice,
-          categoryId: inventory.categoryId,
-        },
-        images: {
-          id: images.id,
-          description: images.description,
-          categoryId: images.categoryId,
-          inventoryId: images.inventoryId,
-          image: images.image,
-        },
-      })
-      .from(inventory)
-      .leftJoin(images, eq(images.inventoryId, inventory.id))
-      .where(inArray(inventory.id, inventoryIds));
-    if (response) {
-      const convertedResponse: InventoryWithImages[] =
-        convertToInventoryWithImages(response);
-
-      return { success: true, data: convertedResponse };
     }
     return { success: false, error: "Error retrieving cart" };
   } catch (e) {
@@ -106,7 +67,7 @@ export const updateCartItem = async (
 
 export const deleteCartItem = async (cartId: number, inventoryId: number) => {
   try {
-    const result = await db
+    const response = await db
       .delete(cartItems)
       .where(
         and(
@@ -115,8 +76,11 @@ export const deleteCartItem = async (cartId: number, inventoryId: number) => {
         )
       )
       .returning({ deleted: cartItems.id });
-    return result[0];
+    if (response[0].deleted) {
+      return { success: true };
+    }
+    return { success: false };
   } catch (e) {
-    throw new CustomError(500, "Internal Server Error");
+    return { success: false };
   }
 };
