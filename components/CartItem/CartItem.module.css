@@ -1,0 +1,80 @@
+.productContainer {
+  width: 100%;
+  background-color: white;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.image {
+  height: 90%;
+}
+
+.productName,
+.inStock,
+.outOfStock,
+.sizeContainer,
+.qtyContainer,
+.actionsContainer {
+  margin: 10px 40px;
+}
+
+.inStock,
+.outOfStock {
+  font-size: 0.8em;
+}
+.inStock {
+  color: green;
+}
+.outOfStock {
+  color: red;
+}
+
+.sizeLabel,
+.sizeValue {
+  display: inline-block;
+}
+
+.qtyLabel {
+  display: inline-block;
+  font-size: 0.83em;
+  font-weight: bolder;
+}
+
+.qtyInput {
+  width: 50px;
+}
+.actionsContainer {
+  overflow: visible;
+  text-wrap: nowrap;
+}
+
+.productPrice {
+  display: inline-block;
+  position: relative;
+  margin: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.actionP {
+  user-select: none;
+}
+
+.actionButton {
+  border: none;
+  background-color: white;
+  color: rgb(71, 151, 175);
+  text-decoration: none;
+}
+
+.actionButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

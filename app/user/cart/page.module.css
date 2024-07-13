@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.title {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.cartContainer {
+  margin: 20px;
+  display: flex;
+  border: 1px solid #000000cc;
+  border-radius: 10px;
+  width: 65%;
+  min-height: 200px;
+  overflow: hidden;
+  height: fit-content;
+  flex-direction: column;
+}
+
+.emptyCart {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtotalContainer {
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: white;
+  padding-right: 20px;
+  align-items: center;
+}
+
+.checkoutContainer {
+  border-radius: 10px;
+  margin: 20px;
+  background-color: white;
+  height: 120px;
+  width: 30%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutSubtotal {
+  display: inline-block;
+  margin: 15px;
+  margin-bottom: 30px;
+}
+
+.checkoutButtonContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.checkoutButton {
+  display: inline-block;
+  text-align: center;
+  width: 70%;
+  background-color: #ffb703;
+  padding: 5px 50px;
+  border-radius: 20px;
+  transition: all 0.4s;
+}
+
+.checkoutButton:hover {
+  background-color: #e78c4c;
+}
