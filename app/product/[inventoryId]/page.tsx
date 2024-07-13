@@ -5,11 +5,13 @@ import WishlistButton from "@/components/WishlistButton";
 import { getSession } from "@/actions/session";
 import { getWishlist } from "@/actions/wishlistActions";
 import ProductForm from "@/components/ProductForm";
+import { getCategoryName } from "@/actions/categoryActions";
 
 const ProductPage = async ({ params }: { params: { inventoryId: number } }) => {
   const product = await getProductWithImage(params.inventoryId);
   const user = await getSession(true);
   const wishlist = await getWishlist(user.wishlistId);
+  const category = await getCategoryName(product?.categoryId!);
   return (
     <div className={styles.pageContainer}>
       <div className={styles.imageContainer}>
@@ -28,7 +30,11 @@ const ProductPage = async ({ params }: { params: { inventoryId: number } }) => {
         <h3 className={styles.productName}>{product?.name}</h3>
         <p className={styles.price}>${product?.unitPrice}</p>
         <h5 className={styles.stockLabel}>In Stock: {product?.stock}</h5>
-        <ProductForm cartId={user.cartId} inventoryId={product?.id!} />
+        <ProductForm
+          category={category.data!}
+          cartId={user.cartId}
+          inventoryId={product?.id!}
+        />
         <h5 className={styles.detailsLabel}>Details:</h5>
         <p>{product?.description}</p>
       </div>

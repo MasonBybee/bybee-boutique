@@ -13,6 +13,7 @@ const initialFormState = {
 interface ProductFormProps {
   cartId: number;
   inventoryId: number;
+  category: string;
 }
 
 interface ProductDataState {
@@ -20,7 +21,11 @@ interface ProductDataState {
   qty: number;
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ cartId, inventoryId }) => {
+const ProductForm: React.FC<ProductFormProps> = ({
+  cartId,
+  inventoryId,
+  category,
+}) => {
   const [data, setData] = useState<ProductDataState>(initialFormState);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -36,7 +41,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ cartId, inventoryId }) => {
     startTransition(() => {
       addCartItem(cartId, inventoryId, data.qty).then((response) => {
         if (response.success) {
-          router.push("/");
+          router.push(`/category/${category}`);
         }
       });
     });
