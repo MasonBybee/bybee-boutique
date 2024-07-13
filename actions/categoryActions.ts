@@ -1,6 +1,8 @@
 "use server";
 import CustomError from "@/lib/CustomError";
 import db from "@/lib/db/db";
+import { categories } from "@/lib/schema/Category";
+import { eq } from "drizzle-orm";
 import { cache } from "react";
 
 export const getCategories = cache(async () => {
@@ -42,3 +44,18 @@ export const getCategory = cache(async (categoryName: string) => {
     throw e;
   }
 });
+
+export const getCategoryName = async (categoryId: number) => {
+  try {
+    const response = await db
+      .select({ name: categories.name })
+      .from(categories)
+      .where(eq(categories.id, categoryId));
+    if (response[0]) {
+      return { success: true, data: response[0].name };
+    }
+    return { success: false, error: "Error getting category name" };
+  } catch (e) {
+    return { success: false, error: "Error getting category name" };
+  }
+};
