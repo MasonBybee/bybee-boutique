@@ -92,3 +92,10 @@ export interface ConvertedProductResponse {
   error?: string;
   data: InventoryWithImages[];
 }
+
+export interface cartItemWithImage {
+  id: number;
+  cartId: number;
+  quantity: number;
+  product: InventoryWithImages;
+}
