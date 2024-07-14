@@ -1,4 +1,3 @@
-"use server";
 import CategoryContainer from "@/components/CategoryContainer";
 import styles from "./page.module.css";
 import { getCategories } from "@/actions/categoryActions";
