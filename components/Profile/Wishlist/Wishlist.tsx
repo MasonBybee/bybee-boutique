@@ -22,12 +22,12 @@ const Wishlist: React.FC<WishlistProps> = ({
       <div className={styles.productContainer}>
         <ul>
           {products ? (
-            products.map((product, index) => {
+            products.map((product) => {
               return (
                 <ProductCard
                   product={product}
                   wishlist={wishlist}
-                  index={index}
+                  key={product.id}
                   wishlistId={wishlistId}
                 />
               );

@@ -44,7 +44,7 @@ const CategoryPage = async ({
             <ProductCard
               wishlist={wishlistItems}
               wishlistId={wishlistId}
-              index={index}
+              key={index}
               product={product}
             />
           );

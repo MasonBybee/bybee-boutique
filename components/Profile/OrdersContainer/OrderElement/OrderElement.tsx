@@ -23,6 +23,7 @@ const OrderElement = ({ order }: { order: OrderValues }) => {
           order.items.map((orderItem) => {
             return (
               <OrderItem
+                key={orderItem.id}
                 quantity={orderItem.quantity}
                 product={orderItem.product}
               />

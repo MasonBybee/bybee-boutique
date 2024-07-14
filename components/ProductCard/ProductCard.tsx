@@ -15,19 +15,17 @@ interface ProductProps {
     categoryId: number;
     images: Image[];
   };
-  index: number;
   wishlistId: number;
   wishlist: WishlistItems[];
 }
 
 const ProductCard: React.FC<ProductProps> = ({
   product,
-  index,
   wishlistId,
   wishlist,
 }) => {
   return (
-    <li key={index} className={styles.container}>
+    <li className={styles.container}>
       <div className={styles.card}>
         <WishlistButton
           wishlist={wishlist}
