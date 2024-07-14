@@ -54,6 +54,18 @@ export interface FormErrors {
   submit?: string;
 }
 
+export interface CheckoutFormErrors {
+  addressLineOne?: string;
+  addressLineTwo?: string;
+  zipCode?: string;
+  city?: string;
+  state?: string;
+  cardNumber?: string;
+  fullName?: string;
+  expirationDate?: string;
+  securityCode?: string;
+}
+
 export interface FormResponse {
   success: boolean;
   errors?: FormErrors;
@@ -93,9 +105,21 @@ export interface ConvertedProductResponse {
   data: InventoryWithImages[];
 }
 
-export interface cartItemWithImage {
+export interface CartItemWithImage {
   id: number;
   cartId: number;
   quantity: number;
   product: InventoryWithImages;
+}
+
+export interface AddressAndPaymentFormData {
+  addressLineOne: string;
+  addressLineTwo: string;
+  zipCode: string;
+  city: string;
+  state: string;
+  cardNumber: string;
+  fullName: string;
+  expirationDate: string;
+  securityCode: string;
 }
