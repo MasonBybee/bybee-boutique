@@ -1,0 +1,21 @@
+.container {
+  margin: 20px;
+  width: 80%;
+}
+
+.orderContainer {
+  background-color: white;
+  border: 1px solid black;
+  height: fit-content;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.noOrders {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
