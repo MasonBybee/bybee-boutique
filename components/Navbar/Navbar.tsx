@@ -33,11 +33,11 @@ const Navbar = ({
             Brand
           </NavLink>
         </li>
-        <li className={styles.navlileft}>
+        {/* <li className={styles.navlileft}>
           <NavLink icon={faShirt} href={"/clothing"}>
             Clothing
           </NavLink>
-        </li>
+        </li> */}
         <li className={styles.navliright}>
           <NavLink icon={faShoppingCart} href={"/user/cart"}>
             Cart
