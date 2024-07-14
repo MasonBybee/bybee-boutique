@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import MyAccount from "@/components/Profile/MyAccount";
 import EditProfile from "@/components/Profile/EditProfile";
 import EditPassword from "@/components/Profile/EditPassword";
-import Orders from "@/components/Profile/Orders";
+import Orders from "@/components/Profile/OrdersContainer";
 import Addresses from "@/components/Profile/Addresses";
 import Wishlist from "@/components/Profile/Wishlist";
 import Loading from "@/components/Loading";
