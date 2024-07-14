@@ -76,6 +76,15 @@ export interface UpdatePassword {
   checkPassword: string;
 }
 
+export interface orderItemsWithProductImages {
+  id: number;
+  orderId: number;
+  inventoryId: number;
+  price: string;
+  quantity: number;
+  product: InventoryWithImages;
+}
+
 export interface OrderValues {
   id: number;
   userId: number;
@@ -83,6 +92,8 @@ export interface OrderValues {
   discount: string;
   tax: string;
   status: string;
+  orderDate: string;
+  items: orderItemsWithProductImages[];
 }
 
 export interface ConvertToInventoryWithImagesInput {
