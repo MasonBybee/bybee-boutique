@@ -84,3 +84,18 @@ export const deleteCartItem = async (cartId: number, inventoryId: number) => {
     return { success: false };
   }
 };
+
+export const emptyCart = async (cartId: number) => {
+  try {
+    const response = await db
+      .delete(cartItems)
+      .where(eq(cartItems.cartId, cartId))
+      .returning({ deletedFrom: cartItems.cartId });
+    if (response.length) {
+      return response[0];
+    }
+    return { success: false, error: "Failed to empty Cart" };
+  } catch (e) {
+    return { success: false, error: "Failed to empty Cart" };
+  }
+};
