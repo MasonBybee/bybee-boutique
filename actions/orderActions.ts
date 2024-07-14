@@ -17,11 +17,23 @@ export const getOrders = async (
 ): Promise<OrderValues[] | undefined> => {
   try {
     const response = await db.query.orders.findMany({
+      with: {
+        items: {
+          with: {
+            product: {
+              with: {
+                images: true,
+              },
+            },
+          },
+        },
+      },
       where: (orders, { eq }) => eq(orders.userId, id),
     });
-    if (response.length) {
+    if (response) {
       return response;
-    } else return;
+    }
+    return;
   } catch (e) {
     return;
   }
