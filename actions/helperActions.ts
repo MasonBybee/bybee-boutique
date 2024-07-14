@@ -1,5 +1,5 @@
 import { Image } from "@/lib/schema/Image";
-import { InventoryWithImages } from "@/lib/types";
+import { CartItemWithImage, InventoryWithImages } from "@/lib/types";
 
 export const convertToInventoryWithImages = (
   response: {
@@ -38,4 +38,21 @@ export const convertToInventoryWithImages = (
   });
   const resp: InventoryWithImages[] = Array.from(inventoryMap.values());
   return resp;
+};
+
+export const getQtyAndSubtotal = (userCart: CartItemWithImage[]) => {
+  let qty = 0;
+  let subtotal = 0;
+  for (let item of userCart) {
+    qty += item.quantity;
+    subtotal += Number(item.product.unitPrice) * item.quantity;
+  }
+  return [qty, subtotal];
+};
+
+export const calcTaxAndShipping = (itemQty: number, subtotal: number) => {
+  const shipping = itemQty * 5;
+  const tax = (subtotal + shipping) * 0.065;
+  const total = subtotal + shipping + tax;
+  return [shipping.toFixed(2), tax.toFixed(2), total.toFixed(2)];
 };
