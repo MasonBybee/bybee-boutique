@@ -3,10 +3,11 @@ import styles from "./page.module.css";
 import { getSession } from "@/actions/session";
 import { redirect } from "next/navigation";
 import { getCart } from "@/actions/cartActions";
-import { cartItemWithImage } from "@/lib/types";
+import { CartItemWithImage } from "@/lib/types";
 import CartItem from "@/components/CartItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { getQtyAndSubtotal } from "@/actions/helperActions";
 
 const CartPage = async () => {
   const session = await getSession(true);
@@ -14,20 +15,12 @@ const CartPage = async () => {
     redirect("/user/login");
   }
   const response = await getCart(session.cartId);
-  let userCart: cartItemWithImage[] | [] = [];
+  let userCart: CartItemWithImage[] | [] = [];
   if (response.success && response.data) {
     userCart = response.data;
   }
-  const getQtyAndSubtotal = () => {
-    let qty = 0;
-    let subtotal = 0;
-    for (let item of userCart) {
-      qty += item.quantity;
-      subtotal += Number(item.product.unitPrice) * item.quantity;
-    }
-    return [qty, subtotal];
-  };
-  const [numOfItems, subtotal] = getQtyAndSubtotal();
+
+  const [numOfItems, subtotal] = getQtyAndSubtotal(userCart);
 
   return (
     <div>
