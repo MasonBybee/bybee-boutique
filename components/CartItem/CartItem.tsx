@@ -1,6 +1,6 @@
 "use client";
 import React, { ChangeEvent, useEffect, useState, useTransition } from "react";
-import { cartItemWithImage } from "@/lib/types";
+import { CartItemWithImage } from "@/lib/types";
 import styles from "./CartItem.module.css";
 import { deleteCartItem, updateCartItem } from "@/actions/cartActions";
 import { useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ const CartItem = ({
   cartItem,
   wishlistId,
 }: {
-  cartItem: cartItemWithImage;
+  cartItem: CartItemWithImage;
   wishlistId: number;
 }) => {
   const router = useRouter();
@@ -54,7 +54,6 @@ const CartItem = ({
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(`SETTING DATA TO: ${e.target.value}`);
     setData(Number(e.target.value));
   };
   return (
