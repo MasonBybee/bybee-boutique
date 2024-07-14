@@ -1,0 +1,260 @@
+.title {
+  font-size: 2rem;
+  color: #ffb703;
+}
+
+.error {
+  position: absolute;
+  top: 2em;
+  left: 0px;
+  font-size: x-small;
+  margin: 10px 0;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.container,
+.paymentContainer,
+.addressContainer {
+  margin: 30px;
+  display: grid;
+  gap: 40px;
+  text-align: left;
+}
+
+.form {
+  display: grid;
+  gap: 2.4em;
+  max-width: 100%;
+  text-align: left;
+  padding-block: 0.5em;
+}
+
+.inputWrapper {
+  position: relative;
+  display: grid;
+  gap: 0.2em;
+  margin-block-start: 0.6em;
+}
+
+.formLabel {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 0.05em;
+  margin-inline: 0.45em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.1em 0.35em;
+  background-color: white;
+  transition: transform 0.3s cubic-bezier(0.86, -0.1, 0.27, 1.15),
+    background-color 0.3s cubic-bezier(0.86, -0.1, 0.27, 1.15);
+  pointer-events: none;
+}
+.formInput {
+  text-align: center;
+  border: none;
+  border-radius: 0.2em;
+  padding: 0.35em 0.55em;
+  width: 100%;
+  background-color: white;
+  caret-color: #8b4513;
+  box-shadow: 0 0 0 -0.1em #f1fae5, 0 0 0 -0.2em rgba(255, 183, 3, 0.8);
+  transition: box-shadow 0.4s cubic-bezier(0.86, -0.1, 0.27, 1.15);
+}
+
+.formInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2em #f1fae5, 0 0 0 0.4em rgba(255, 183, 3, 0.8);
+}
+.formInput:focus ~ .formLabel,
+.formInput:not(:placeholder-shown) ~ .formLabel {
+  transform: translate3d(0, -2.73em, 0);
+  background-color: #f1fae5;
+  color: rgba(255, 183, 3, 0.8);
+}
+
+.formInput::placeholder {
+  opacity: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .md\:span-2 {
+    grid-column: 1 / span 2;
+  }
+}
+
+.btn {
+  border: none;
+  max-width: fit-content;
+  display: flex;
+  gap: 0.5em;
+  background-color: #ffb703;
+  color: #8b4513;
+  text-decoration: none;
+  padding: 0.4em 1.4em;
+  border-radius: 0.2em;
+  box-shadow: 0.05em 0.1em 0.9em rgba(255, 183, 3, 0.3), 0 0 0 -0.1em #f1fae5,
+    0 0 0 -0.2em rgb(255, 183, 3);
+  transition: box-shadow 0.4s cubic-bezier(0.86, -0.1, 0.27, 1.15),
+    background-color 0.4s cubic-bezier(0.86, -0.1, 0.27, 1.15);
+}
+.btn :where(svg, img, span) {
+  pointer-events: none;
+}
+
+.btn :where(svg, img) {
+  width: 2.5rem;
+}
+
+.btn:where(:active, :hover) {
+  background-color: rgba(255, 183, 3, 0.7);
+  box-shadow: 0 0 0 rgba(255, 183, 3, 0.3), 0 0 0 -0.1em #f1fae5,
+    0 0 0 -0.2em rgb(255, 183, 3);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  box-shadow: 0 0 0 rgba(255, 183, 3, 0.3), 0 0 0 0.2em #f1fae5,
+    0 0 0 0.4em rgba(255, 183, 3, 0.7);
+}
+
+.leftSideContainer {
+  width: 30%;
+}
+
+.cartSection {
+  margin: 30px;
+  width: 50%;
+}
+
+.zipCodeInput {
+  width: 100px;
+}
+
+.cityInput {
+  text-align: left;
+  width: 200px;
+}
+
+.stateInput {
+  width: 100px;
+}
+
+.addressLineInputs {
+  text-align: left;
+  width: 400px;
+}
+
+.cardNumberInput::-webkit-outer-spin-button,
+.cardNumberInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cardNumberInput {
+  width: 150px;
+}
+
+.fullNameInput {
+  text-align: left;
+  width: 200px;
+}
+
+.expirationDateInput {
+  width: 120px;
+}
+
+.securityCodeInput {
+  width: 120px;
+}
+
+.cartContainer {
+  margin: 20px;
+  display: flex;
+  border: 1px solid #000000cc;
+  border-radius: 10px;
+  width: 75%;
+  min-height: 200px;
+  overflow: hidden;
+  height: fit-content;
+  flex-direction: column;
+}
+
+.subtotalContainer {
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: white;
+  padding-right: 20px;
+  align-items: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.placeOrderContainer {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: fit-content;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.orderTotalBreakdownContainer {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid grey;
+  margin: 10px;
+}
+
+.orderBreakdownSection {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.orderBreakdownPrice {
+  width: 30%;
+  text-align: right;
+}
+
+.orderBreakdownFee {
+  width: 80%;
+  text-align: left;
+}
+
+.checkoutButtonContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.checkoutButton {
+  display: inline-block;
+  text-align: center;
+  width: 70%;
+  background-color: #ffb703;
+  padding: 5px 50px;
+  border-radius: 20px;
+  transition: all 0.4s;
+  border: none;
+}
+
+.checkoutButton:hover {
+  background-color: #e78c4c;
+}
