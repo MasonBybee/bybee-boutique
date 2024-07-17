@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductProps> = ({
   wishlist,
 }) => {
   return (
-    <li className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.card}>
         <WishlistButton
           wishlist={wishlist}
@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductProps> = ({
           </p>
         </a>
       </div>
-    </li>
+    </div>
   );
 };
 

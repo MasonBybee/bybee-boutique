@@ -4,7 +4,6 @@ import styles from "./MyAccount.module.css";
 import LogoutBtn from "@/components/LogoutBtn";
 
 const MyAccount = ({ setActive, user, isPending }: any) => {
-  console.log(user);
   if (!user) {
     return <></>;
   }

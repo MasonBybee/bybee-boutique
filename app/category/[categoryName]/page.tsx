@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import { WishlistItems } from "@/lib/schema/WishlistItems";
 import { CategoryWithProduct, InventoryWithImages } from "@/lib/types";
 import React from "react";
+import styles from "./page.module.css";
 
 const CategoryPage = async ({
   params,
@@ -28,17 +29,8 @@ const CategoryPage = async ({
   }
   return (
     <>
-      <h1
-        style={{
-          textAlign: "center",
-          padding: "20px 0px",
-          borderBottom: "1px solid black",
-          width: "100%",
-        }}
-      >
-        {category?.name}
-      </h1>
-      <ul>
+      <h1 className={styles.title}>{category?.name}</h1>
+      <div className={styles.productContainer}>
         {category.products.map((product: InventoryWithImages, index) => {
           return (
             <ProductCard
@@ -49,7 +41,7 @@ const CategoryPage = async ({
             />
           );
         })}
-      </ul>
+      </div>
     </>
   );
 };
